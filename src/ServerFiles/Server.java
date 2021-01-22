@@ -1,3 +1,5 @@
+package Server;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -19,15 +21,26 @@ public class Server {
         usersInfo = new HashMap<>();
     }
 
-    public boolean registerUser(String username, String password){
+    public boolean matches(String user, String password){
         rl.lock();
-        boolean exists;
         try{
-            exists = usersInfo.containsKey(username);
-        } finally{
+            return(password.equals(usersInfo.get(user)));
+        } finally {
             rl.unlock();
         }
-        if(exists)
+    }
+
+    public boolean exists(String user){
+        rl.lock();
+        try {
+            return usersInfo.containsKey(user);
+        } finally {
+            rl.unlock();
+        }
+    }
+
+    public boolean registerUser(String username, String password){
+        if(exists(username))
             return false;
         else{
             wl.lock();

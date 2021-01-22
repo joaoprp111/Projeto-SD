@@ -1,8 +1,10 @@
+package Server;
+
+import Server.Server;
+
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.HashMap;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class ServerWorker implements Runnable{
     private Socket socket;
@@ -27,6 +29,14 @@ public class ServerWorker implements Runnable{
                             System.out.println("Utilizador " +user+ " registado!");
                         else
                             System.out.println("Já existe!");
+                        break;
+                    case 1:
+                        String user1 = in.readUTF();
+                        String pw = in.readUTF();
+                        if(s.exists(user1) && s.matches(user1, pw))
+                            System.out.println("Autenticado com sucesso");
+                        else
+                            System.out.println("Erro");
                         break;
                     case -1:
                         System.out.println("Registos efetuados com sucesso!");

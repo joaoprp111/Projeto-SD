@@ -21,9 +21,10 @@ public class WriteWorker implements Runnable {
             while((input = systemin.readLine()) != null){
                 tag =  Integer.parseInt(input);
                 /* Primeiro inteiro é a etiqueta da operação */
-                out.writeInt(tag); /* 0 -> registar utilizador */
+                out.writeInt(tag);
                 switch(tag){
-                    case 0:
+                    case 0: /* 0 -> registar utilizador */
+                    case 1: /* 1 -> autenticar */
                         out.writeUTF(systemin.readLine()); /* Username */
                         out.writeUTF(systemin.readLine()); /* Password */
                         break;
