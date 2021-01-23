@@ -1,4 +1,4 @@
-package ServerFiles;
+package UserFiles;
 
 public class Localizacao {
     private int x;

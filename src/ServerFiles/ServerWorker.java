@@ -1,6 +1,4 @@
-package Server;
-
-import Server.Server;
+package ServerFiles;
 
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -33,13 +31,15 @@ public class ServerWorker implements Runnable{
                     case 1:
                         String user1 = in.readUTF();
                         String pw = in.readUTF();
-                        if(s.exists(user1) && s.matches(user1, pw))
+                        if(s.exists(user1) && s.matches(user1, pw) && !s.isLoggedIn(user1)) {
+                            s.addLogin(user1);
                             System.out.println("Autenticado com sucesso");
+                        }
                         else
                             System.out.println("Erro");
                         break;
                     case -1:
-                        System.out.println("Registos efetuados com sucesso!");
+                        System.out.println("Operações terminadas");
                         isOpen = false;
                         break;
                     default:
