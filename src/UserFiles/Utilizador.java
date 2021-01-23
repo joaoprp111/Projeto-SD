@@ -1,4 +1,4 @@
-package ServerFiles;
+package UserFiles;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -6,7 +6,7 @@ import java.util.HashSet;
 public class Utilizador {
     private String username;
     private Localizacao l;
-    private Collection<Integer> idsContacts;
+    private Collection<String> idsContacts;
 
     public Utilizador(String username, int x, int y){
         this.username = username;
